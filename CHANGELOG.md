@@ -4,6 +4,11 @@ This is the translated upstream ARTEX history from baseline `160fe13`, preservin
 
 ## [Unreleased]
 
+### Paused tasks stay paused when the server is rebuilt (#94)
+
+#### Fixed
+- When a server was rebuilt on a task manager that already held its tasks, restoring task runtimes did not reapply a saved pause to those tasks before starting their loops. Paused tasks then ran a planner round immediately and again on every 600-second heartbeat. Every listed task that is paused is now paused before its loop starts. A normal restart builds a fresh manager and already restored the pause, so it behaves as before. See [#95](https://github.com/cskwork/scopeweaver/pull/95).
+
 ### Zod advisory fully remediated in the OpenCode SDK bridge (#67)
 
 #### Security
